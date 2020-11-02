@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class RegisterUserController extends Controller
 {
-    public function register(){
+    public function register(Request $request){
 
+        $login = $request->input('login');
+        $password = $request->input('password');
+
+
+        return false;
     }
 
 }
