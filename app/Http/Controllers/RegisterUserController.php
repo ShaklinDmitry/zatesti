@@ -2,17 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Register\UserRegistration;
 use Illuminate\Http\Request;
+use App\Classes\Register\RegisterUserHelper;
 
 class RegisterUserController extends Controller
 {
     public function register(Request $request){
 
-        $login = $request->input('login');
-        $password = $request->input('password');
+        $registerUserHelper = new RegisterUserHelper();
 
+        $data = $registerUserHelper->getUserDataFromRequest($request);
 
-        return false;
+        $validateDataResult = $registerUserHelper->validateUserData($data);
+
+        return $validateDataResult;
+
+        if($validateDataResult ){
+            return $validateDataResult;
+        }
+
+        $saveDataResult = $registerUserHelper->saveUserData($data);
+
+        return $saveDataResult;
     }
 
 }
