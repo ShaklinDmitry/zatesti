@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterUserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/register', [RegisterUserController::class, 'register']);
+Route::post('/register', [\App\Http\Controllers\RegisterUserController::class, 'register']);
+
+Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
