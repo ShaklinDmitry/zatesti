@@ -9,6 +9,7 @@
 namespace App\Classes\Register;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * class for methods that used in RegisterUserController
@@ -42,11 +43,14 @@ class RegisterUserHelper
      * @param $data  data contains user info from registration request etc email,login
      * @return bool
      */
-    public function saveUserData($data){
+    public function    saveUserData($data){
         $user = new User();
         $user->login = $data['login'];
         $user->email = $data['email'];
-        $user->password = $data['password'];
+        $user->password = Hash::make($data['password'], [
+            'rounds' => 12,
+        ]);
+
         $saveState = $user->save();
         return $saveState;
     }

@@ -5,9 +5,22 @@ namespace App\Http\Controllers;
 use App\Classes\Register\UserRegistration;
 use Illuminate\Http\Request;
 use App\Classes\Register\RegisterUserHelper;
+use function PHPUnit\Framework\isEmpty;
 
+/**
+ * controller for register user
+ *
+ * Class RegisterUserController
+ * @package App\Http\Controllers
+ */
 class RegisterUserController extends Controller
 {
+    /**
+     * register action
+     *
+     * @param Request $request
+     * @return array
+     */
     public function register(Request $request){
 
         $registerUserHelper = new RegisterUserHelper();
@@ -16,15 +29,15 @@ class RegisterUserController extends Controller
 
         $validateDataResult = $registerUserHelper->validateUserData($data);
 
-        return $validateDataResult;
-
-        if($validateDataResult ){
+        if(!$validateDataResult['loginUniqueness'] || !$validateDataResult['emailUniqueness']){
             return $validateDataResult;
         }
 
         $saveDataResult = $registerUserHelper->saveUserData($data);
 
-        return $saveDataResult;
+        return ['login' => $data['login'],
+                'registerState' => $saveDataResult
+            ];
     }
 
 }
