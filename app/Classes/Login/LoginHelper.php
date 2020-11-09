@@ -8,7 +8,7 @@
 
 namespace App\Classes\Login;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 /**
  * class that contains methods that used in login
  *
@@ -35,12 +35,13 @@ class LoginHelper
 
 
     public function loginUser($data){
-        $user = User::where('login', $data['login']);
+        $user = User::where('login', $data['login'])->first();
 
-        print_r($user);
-
-//        if (Hash::check($data['password'], $user)) {
-//            // The passwords match...
-//        }
+        if (Hash::check($data['password'], $user['password'])) {
+            return [
+                'login' => $data['login'],
+                'loginState' => true
+            ];
+        }
     }
 }
