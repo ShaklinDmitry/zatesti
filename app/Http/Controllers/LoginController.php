@@ -13,15 +13,25 @@ use Illuminate\Http\Request;
  */
 class LoginController extends Controller
 {
-
     public function login(Request $request){
-        $loginHelper = new LoginHelper();
+        $token = $request->input('token');
 
-        $data = $loginHelper->getUserDataFromRequest($request);
+        if(isTokenValid()){
+            $loginHelper = new LoginHelper();
 
-        $loginState = $loginHelper->loginUser($data);
+            $data = $loginHelper->getUserDataFromRequest($request);
 
+            $loginState = $loginHelper->loginUser($data);
+        }else{
+            $login = getLoginByToken();
 
+            $loginState = [
+                'login' => $login,
+                'loginState' => true,
+                'token' => $token
+            ];
+        }
 
+        return $loginState;
     }
 }

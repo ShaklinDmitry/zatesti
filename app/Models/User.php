@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
   //  use HasFactory;
+
+    public function isTokenValid(){
+
+        if(!checkOnTokenExpireDate() || !checkOnExistance()){
+            return false;
+        }
+        return true;
+    }
+
+
 }

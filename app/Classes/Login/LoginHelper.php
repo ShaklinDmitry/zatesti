@@ -9,6 +9,7 @@
 namespace App\Classes\Login;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 /**
  * class that contains methods that used in login
  *
@@ -37,11 +38,19 @@ class LoginHelper
     public function loginUser($data){
         $user = User::where('login', $data['login'])->first();
 
+        $token = $this->createToken();
+
         if (Hash::check($data['password'], $user['password'])) {
             return [
                 'login' => $data['login'],
-                'loginState' => true
+                'loginState' => true,
+                'token' => $token
             ];
         }
+    }
+
+    private function createToken(){
+        $token = Str::random(32);
+        return $token;
     }
 }
