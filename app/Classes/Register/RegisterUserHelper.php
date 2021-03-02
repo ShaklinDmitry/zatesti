@@ -56,6 +56,7 @@ class RegisterUserHelper
     }
 
 
+    const FIELDS_FOR_VALIDATION = ['login', 'email'];
     /**
      * validate user login and email on uniqueness
      *
@@ -63,12 +64,33 @@ class RegisterUserHelper
      * @return array
      */
     public function validateUserData($data){
-        $loginUniqueness = $this->validateLoginUniqueness($data['login']);
-        $emailUniqueness = $this->validateEmailUniqueness($data['email']);
 
-        return[
-          'loginUniqueness' => !boolval($loginUniqueness),
-          'emailUniqueness' => !boolval($emailUniqueness),
+        $validationResult = [];
+
+        foreach (FIELDS_FOR_VALIDATION as $key=>$value){
+            $validationResult[] = validateField($value, $data[$value]);
+        }
+
+//        $isLoginValidatedSuccessfully = $this->validateLogin($data['login']);
+//
+//
+//
+//        $loginUniqueness = $this->validateLoginUniqueness($data['login']);
+//        $emailUniqueness = $this->validateEmailUniqueness($data['email']);
+//
+//        if(!boolval($loginUniqueness) || !boolval($emailUniqueness)){
+//            return false;
+//        }
+//
+//        return true;
+
+    }
+
+    private function validateField($fieldName, $fieldValue){
+        $matching = User::where($fieldName, $fieldValue)->first();
+        return [
+            'fieldName' => $fieldName,
+            'isValidationSuccessful' => !boolval($matching)
         ];
     }
 
@@ -78,9 +100,9 @@ class RegisterUserHelper
      * @param $login
      * @return int
      */
-    private function validateLoginUniqueness($login){
+    private function validateLogin($login){
         $matchingLoginsCount = User::where('login', $login)->count();
-        return $matchingLoginsCount;
+        return !boolval($matchingLoginsCount);
     }
 
 

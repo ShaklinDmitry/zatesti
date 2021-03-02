@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Register\UserRegistration;
+use App\Mail\RegistartionConfirmationEmail;
 use Illuminate\Http\Request;
 use App\Classes\Register\RegisterUserHelper;
 use function PHPUnit\Framework\isEmpty;
-
+use App\Http\Requests\UserRegistartion;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 /**
  * controller for register user
  *
@@ -21,23 +24,28 @@ class RegisterUserController extends Controller
      * @param Request $request
      * @return array
      */
-    public function register(Request $request){
+    public function register(UserRegistartion $request){
 
-        $registerUserHelper = new RegisterUserHelper();
+    //    Mail::to('b1a98f7538-5964da@inbox.mailtrap.io')->send(new RegistartionConfirmationEmail());
 
-        $data = $registerUserHelper->getUserDataFromRequest($request);
+    //    die;
 
-        $validateDataResult = $registerUserHelper->validateUserData($data);
+        $failValidatedFields = $request->failed();
 
-        if(!$validateDataResult['loginUniqueness'] || !$validateDataResult['emailUniqueness']){
-            return $validateDataResult;
+        if(empty($failValidatedFields)){
+
+            $user = new User();
+            $user->login = $request->input('login');
+            $user->email = $request->input('email');
+            $user->password = Hash::make($request->input('password'), [
+                'rounds' => 12,
+            ]);
+            $result = $user->save();
+
+            return $this->sendResponse($result, 'User Registered', 201);
+        }else{
+            return $this->sendError('User Registration Fields Failed Validation', 200, $failValidatedFields);
         }
-
-        $saveDataResult = $registerUserHelper->saveUserData($data);
-
-        return ['login' => $data['login'],
-                'registerState' => $saveDataResult
-            ];
     }
 
 }
