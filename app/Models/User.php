@@ -17,5 +17,14 @@ class User extends Model
         return true;
     }
 
+    /**
+     * @param $login
+     */
+    public function getUserByLogin($login){
+        return $this->select('*')->where([
+            ['login', '=', $login]
+        ])->first();
+    }
+
 
 }

@@ -7,6 +7,9 @@ use Illuminate\Contracts\Validation\Validator;
 
 class UserRegistartion extends FormRequest
 {
+    private $failValidationFields;
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -31,19 +34,24 @@ class UserRegistartion extends FormRequest
     }
 
     /**
-     * Get the validated data from the request.
+     * Get not validated data from the request.
      *
      * @return array
      */
-    public function failed()
+    public function failedFields()
     {
-        return $this->validator->failed();
+        $this->failValidationFields = $this->validator->failed();
+        return $this->failValidationFields;
     }
 
-
-    protected function failedValidation(Validator $validator)
-    {
-        return true;
+    /**
+     * @return bool
+     */
+    public function getValidationStatus(){
+        if(empty($failValidationFields)){
+            return true;
+        }
+        return false;
     }
 
 }

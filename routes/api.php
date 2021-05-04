@@ -25,3 +25,11 @@ Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get('/view', function () {
     return view('exmpl');
 });
+
+Route::get('/animal/add','AnimalController@create');
+Route::post('/animal/add',[\App\Http\Controllers\AnimalController::class, 'store']);
+Route::get('/animal/car','AnimalController@index');
+Route::get('/animal/edit/{id}','AnimalController@edit');
+Route::post('/animal/edit/{id}','AnimalController@update');
+Route::delete('/animal/delete/{id}','AnimalController@destroy');
+

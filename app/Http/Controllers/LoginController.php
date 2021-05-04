@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Login\LoginHelper;
+use App\Http\Requests\Login;
 use Illuminate\Http\Request;
 
 /**
@@ -13,25 +14,15 @@ use Illuminate\Http\Request;
  */
 class LoginController extends Controller
 {
-    public function login(Request $request){
-        $token = $request->input('token');
+    /**
+     * @param Login $request
+     * @return bool
+     */
+    public function login(Login $request){
+        $login = new \App\Layers\Login\Login();
+        $isLoginSuccess = $login->login($request);
 
-        if(isTokenValid()){
-            $loginHelper = new LoginHelper();
-
-            $data = $loginHelper->getUserDataFromRequest($request);
-
-            $loginState = $loginHelper->loginUser($data);
-        }else{
-            $login = getLoginByToken();
-
-            $loginState = [
-                'login' => $login,
-                'loginState' => true,
-                'token' => $token
-            ];
-        }
-
-        return $loginState;
+        return $isLoginSuccess;
     }
+
 }
