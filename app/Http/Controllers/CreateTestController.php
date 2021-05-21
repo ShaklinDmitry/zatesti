@@ -14,5 +14,6 @@ class CreateTestController extends Controller
         $result = $test->create($request->name);
 
         return $result;
+
     }
 }
