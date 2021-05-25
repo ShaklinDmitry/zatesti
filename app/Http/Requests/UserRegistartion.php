@@ -11,7 +11,7 @@ class UserRegistartion extends FormRequest
 
 
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if thdocker stop $(docker ps -a -q)e user is authorized to make this request.
      *
      * @return bool
      */

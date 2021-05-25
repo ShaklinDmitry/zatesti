@@ -17,10 +17,12 @@ class RegisterUserTest extends TestCase
     public function testRegisterUser()
     {
         $login = 'test_login';
+        $email = 'test_email';
         $password = 'test_password';
 
         $response = $this->post('/api/register', array(
             'login' => $login,
+            'email' => $email,
             'password' => $password
         ));
 

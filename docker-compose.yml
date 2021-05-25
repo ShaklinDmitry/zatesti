@@ -19,9 +19,9 @@ services:
       - ./mysqldata:/var/lib/mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=secret"
-      - "MYSQL_DATABASE=homestead"
-      - "MYSQL_USER=homestead"
-      - "MYSQL_PASSWORD=homestead"
+      - "MYSQL_DATABASE=zatestiBase"
+      - "MYSQL_USER=user"
+      - "MYSQL_PASSWORD=password"
     ports:
       - "3320:3306"
     networks:
@@ -32,10 +32,10 @@ services:
     volumes:
       - ./mysqldatatest:/var/lib/mysql
     environment:
-      - "MYSQL_ROOT_PASSWORD=secret_test"
-      - "MYSQL_DATABASE=homestead_test"
-      - "MYSQL_USER=homestead_test"
-      - "MYSQL_PASSWORD=homestead_test"
+      - "MYSQL_ROOT_PASSWORD=secretTest"
+      - "MYSQL_DATABASE=zatestiBaseTest"
+      - "MYSQL_USER=userTest"
+      - "MYSQL_PASSWORD=passwordTest"
     ports:
       - "3330:3306"
     networks:
