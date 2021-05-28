@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
   //  use HasFactory;
-    protected $connection= 'mysql';
+
 
     public function isTokenValid(){
 
