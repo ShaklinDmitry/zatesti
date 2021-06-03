@@ -31,6 +31,14 @@ class RegisterUserTest extends TestCase
             'password' => $password
         ));
 
+        $response->assertJson(
+            [
+                "data" => [
+                    "message" => "Registration was successfull."
+                ]
+            ]
+        );
+
         $userModel = new User();
         $user = $userModel->getUserByLogin($login);
 

@@ -41,8 +41,14 @@ class RegisterUserController extends Controller
             return response() -> json($responseData,422);
         }else{
             $registration = new Registration();
-            $registration->createUser($request);
-            return true;
+            $result = $registration->createUser($request);
+
+            $responseData = [
+                "data" => [
+                    "message" => "Registration was successfull."
+                ]
+            ];
+            return $responseData;
         }
     }
 
