@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -9,6 +11,9 @@ use App\Models\User;
 
 class RegisterUserTest extends TestCase
 {
+ //   use RefreshDatabase;
+
+
     /**
      * Тест на регистрацию пользователя
      *
@@ -56,11 +61,11 @@ class RegisterUserTest extends TestCase
             'password' => $password2
         ));
 
-        $response2->assertStatus(422)->assertJson(
+        $response2->assertJson(
             [
                 "error" => [
                     "code" => 422,
-                    "message" => "User with this login already exists"
+                    "message" => ["User with this login already exists."]
                 ]
             ]
         );
