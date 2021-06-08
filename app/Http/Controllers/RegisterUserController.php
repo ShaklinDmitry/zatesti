@@ -48,7 +48,7 @@ class RegisterUserController extends Controller
                     "message" => "Registration was successfull."
                 ]
             ];
-            return $responseData;
+            return response() -> json($responseData, 201);
         }
     }
 

@@ -11,7 +11,7 @@ use App\Models\User;
 
 class RegisterUserTest extends TestCase
 {
- //   use RefreshDatabase;
+    use RefreshDatabase;
 
 
     /**
@@ -74,6 +74,78 @@ class RegisterUserTest extends TestCase
                 "error" => [
                     "code" => 422,
                     "message" => ["User with this login already exists."]
+                ]
+            ]
+        );
+
+    }
+
+    /**
+     * Тест на проверку того что пользователь с той же почтой не может зарегестрироваться
+     */
+    public function test_registration_of_a_user_with_a_duplicate_email_fails(){
+        $login1 = 'test_login_1';
+        $email1 = 'test_email_1';
+        $password1 = 'test_password_1';
+
+        $response1 = $this->post('/api/register', array(
+            'login' => $login1,
+            'email' => $email1,
+            'password' => $password1
+        ));
+
+        $login2 = 'test_login_2';
+        $email2 = 'test_email_1';
+        $password2 = 'test_password_2';
+
+        $response2 = $this->post('/api/register', array(
+            'login' => $login2,
+            'email' => $email2,
+            'password' => $password2
+        ));
+
+        $response2->assertJson(
+            [
+                "error" => [
+                    "code" => 422,
+                    "message" => ["User with this email already exists."]
+                ]
+            ]
+        );
+
+    }
+
+
+    /**
+     * Тест на проверку того что пользователь с той же почтой и тем же логином не может зарегестрироваться
+     */
+    public function test_registration_of_a_user_with_a_duplicate_email_and_login_fails(){
+        $login1 = 'test_login_1';
+        $email1 = 'test_email_1';
+        $password1 = 'test_password_1';
+
+        $response1 = $this->post('/api/register', array(
+            'login' => $login1,
+            'email' => $email1,
+            'password' => $password1
+        ));
+
+        $login2 = 'test_login_1';
+        $email2 = 'test_email_1';
+        $password2 = 'test_password_2';
+
+        $response2 = $this->post('/api/register', array(
+            'login' => $login2,
+            'email' => $email2,
+            'password' => $password2
+        ));
+
+        $response2->assertJson(
+            [
+                "error" => [
+                    "code" => 422,
+                    "message" => ["User with this login already exists.",
+                                  "User with this email already exists."]
                 ]
             ]
         );
