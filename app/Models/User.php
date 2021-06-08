@@ -20,6 +20,7 @@ class User extends Model
 
     /**
      * @param $login
+     * @return User user
      */
     public function getUserByLogin($login){
         return $this->select('*')->where([

@@ -30,6 +30,7 @@ class RegisterUserController extends Controller
         ], $messages = [
             'unique' => 'User with this :attribute already exists.'
         ]);
+
         if ($validator -> fails()){
             $errors = $validator -> errors();
             $responseData = [
