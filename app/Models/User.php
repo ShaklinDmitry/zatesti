@@ -28,5 +28,15 @@ class User extends Model
         ])->first();
     }
 
+    /**
+     * @param $email
+     * @return User user
+     */
+    public function getUserByEmail($email){
+        return $this->select('*')->where([
+            ['email', '=', $email]
+        ])->first();
+    }
+
 
 }

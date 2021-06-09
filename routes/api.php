@@ -28,3 +28,6 @@ Route::get('/view', function () {
 
 Route::post('/createTest', [\App\Http\Controllers\CreateTestController::class, 'createTest']);
 
+Route::post('/email', function (){
+    \Illuminate\Support\Facades\Mail::to('b1a98f7538-7dc730@inbox.mailtrap.io')->send(new \App\Mail\RegistartionConfirmationEmail());
+});

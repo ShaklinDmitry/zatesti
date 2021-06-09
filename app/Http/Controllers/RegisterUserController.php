@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendRegistrationConfrimationEmailToUser;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegistartion;
 use App\Layers\Registration\Registration;
@@ -49,6 +50,10 @@ class RegisterUserController extends Controller
                     "message" => "Registration was successfull."
                 ]
             ];
+
+            $emailSendJob = new SendRegistrationConfrimationEmailToUser($request->email);
+            SendRegistrationConfrimationEmailToUser::dispatch();
+
             return response() -> json($responseData, 201);
         }
     }
