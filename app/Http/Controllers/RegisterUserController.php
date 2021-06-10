@@ -51,8 +51,7 @@ class RegisterUserController extends Controller
                 ]
             ];
 
-            $emailSendJob = new SendRegistrationConfrimationEmailToUser($request->email);
-            SendRegistrationConfrimationEmailToUser::dispatch();
+            SendRegistrationConfrimationEmailToUser::dispatch($request->email);
 
             return response() -> json($responseData, 201);
         }
