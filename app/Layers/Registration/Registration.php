@@ -14,6 +14,8 @@ class Registration
      */
     public function createUser($request){
         $user = new User();
+
+
         $user->login = $request->login;
         $user->email = $request->email;
         $user->password = Hash::make($request->password, [

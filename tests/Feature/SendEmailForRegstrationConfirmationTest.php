@@ -50,29 +50,28 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
 
     }
 
-//
-//    public function testSendEmailToUser(){
-//        $login = 'test_login';
-//        $email = 'test_email';
-//        $password = 'test_password';
-//
-//        $request = array(
-//            'login' => $login,
-//            'email' => $email,
-//            'password' => $password
-//        );
-//
-//        $registration = new Registration();
-//        $result = $registration->createUser($request);
-//
-//        $sendEmailJob = new SendRegistrationConfrimationEmailToUser();
-//        $sendEmailJob->handle($email);
-//
+
+    public function testSendEmailToUser(){
+
+        $login = 'test_login_1';
+        $email = 'test_email_1';
+        $password = 'test_password_1';
+
+        $response1 = $this->post('/api/register', array(
+          'login' => $login,
+          'email' => $email,
+          'password' => $password
+        ));
+
+        $sendEmailJob = new SendRegistrationConfrimationEmailToUser($email);
+        $emailJobSendResult = $sendEmailJob->handle();
+
+        $this->assertEquals('Error! Email not sended.', $emailJobSendResult);
 //        $userModel = new User();
 //        $user = $userModel->getUserByLogin($login);
-//
+
 //        $this->assertEquals(1, $user->is_confirmation_email_sended);
-//    }
+    }
 
 
 

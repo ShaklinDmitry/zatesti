@@ -14,13 +14,16 @@ class SendRegistrationConfrimationEmailToUser implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $email;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($email)
     {
+        $this->email = $email;
     }
 
     /**
@@ -28,15 +31,25 @@ class SendRegistrationConfrimationEmailToUser implements ShouldQueue
      *
      * @return void
      */
-    public function handle($email)
+    public function handle()
     {
-        $result = Mail::to('b1a98f7538-7dc730@inbox.mailtrap.io')->send(new \App\Mail\RegistartionConfirmationEmail());
 
-        $userModel = new \App\Models\User();
-        $user = $userModel->getUserByEmail($email);
-        if($user){
-            $user->is_confirmation_email_sended = true;
-            $user->save();
+
+        try{
+        //    Mail::to('b1a98f7538-7dc730@inbox.mailtrap.io')->send(new \App\Mail\RegistartionConfirmationEmail());
+            Mail::to('wee@mail.ru')->send(new \App\Mail\RegistartionConfirmationEmail());
+        }catch (\Exception $e){
+            return 'Error! Email not sended.';
         }
+
+
+
+//
+//            $userModel = new \App\Models\User();
+//            $user = $userModel->getUserByEmail($this->email);
+//            if($user){
+//                $user->is_confirmation_email_sended = true;
+//                $user->save();
+//            }
     }
 }
