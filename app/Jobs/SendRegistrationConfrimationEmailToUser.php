@@ -34,14 +34,8 @@ class SendRegistrationConfrimationEmailToUser implements ShouldQueue
     public function handle()
     {
 
-
-        try{
         //    Mail::to('b1a98f7538-7dc730@inbox.mailtrap.io')->send(new \App\Mail\RegistartionConfirmationEmail());
             Mail::to('wee@mail.ru')->send(new \App\Mail\RegistartionConfirmationEmail());
-        }catch (\Exception $e){
-            return 'Error! Email not sended.';
-        }
-
 
 
 //

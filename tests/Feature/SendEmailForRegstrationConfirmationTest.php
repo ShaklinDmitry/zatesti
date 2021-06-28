@@ -51,26 +51,43 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
     }
 
 
-    public function testSendEmailToUser(){
+//    public function testSendEmailToUser(){
+//
+//        $login = 'test_login_1';
+//        $email = 'test_email_1';
+//        $password = 'test_password_1';
+//
+//        $response1 = $this->post('/api/register', array(
+//          'login' => $login,
+//          'email' => $email,
+//          'password' => $password
+//        ));
+//
+//        $sendEmailJob = new SendRegistrationConfrimationEmailToUser($email);
+//        $emailJobSendResult = $sendEmailJob->handle();
+//
+//        $this->assertEquals('Error! Email not sended.', $emailJobSendResult);
+////        $userModel = new User();
+////        $user = $userModel->getUserByLogin($login);
+//
+////        $this->assertEquals(1, $user->is_confirmation_email_sended);
+//    }
 
-        $login = 'test_login_1';
-        $email = 'test_email_1';
-        $password = 'test_password_1';
+    public function testToWhomEmailAddressIsExist(){
+        $login = 'test_login';
+        $email = 'test_email@mail.ru';
+        $password = 'test_password';
 
-        $response1 = $this->post('/api/register', array(
+        $response = $this->post('/api/register', array(
           'login' => $login,
           'email' => $email,
           'password' => $password
         ));
 
-        $sendEmailJob = new SendRegistrationConfrimationEmailToUser($email);
-        $emailJobSendResult = $sendEmailJob->handle();
+        $userModel = new User();
+        $user = $userModel->getUserByLogin($login);
 
-        $this->assertEquals('Error! Email not sended.', $emailJobSendResult);
-//        $userModel = new User();
-//        $user = $userModel->getUserByLogin($login);
-
-//        $this->assertEquals(1, $user->is_confirmation_email_sended);
+        $this->assertEquals($email, $user->email);
     }
 
 
