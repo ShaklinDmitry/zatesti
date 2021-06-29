@@ -5,16 +5,20 @@ namespace Tests\Feature;
 use App\Jobs\SendRegistrationConfrimationEmailToUser;
 use App\Layers\Registration\Registration;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 use App\Models\User;
 use function PHPUnit\Framework\assertFalse;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\MailingInformation;
 
 class SendEmailForRegstrationConfirmationTest extends TestCase
 {
     use RefreshDatabase;
+    use DatabaseMigrations;
     /**
      * A basic feature test example.
      *
@@ -89,6 +93,24 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
 
         $this->assertEquals($email, $user->email);
     }
+
+    public function testFromWhomEmailAddressIsExist(){
+
+        $mailInformation = new MailingInformation();
+        $fromWhomEmail = $mailInformation->getFromWhomEmailAddress("REGISTRATION_CONFIRMATION");
+
+        $this->assertNotNull($fromWhomEmail);
+    }
+
+    public function testIsThereAPlaceForMailingInformation(){
+        if(Schema::hasTable('mailing_information')){
+            $this->assertTrue(true);
+        }else{
+            $this->assertTrue(false);
+        }
+
+    }
+
 
 
 
