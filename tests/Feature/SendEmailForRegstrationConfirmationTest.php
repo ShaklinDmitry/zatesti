@@ -96,6 +96,8 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
 
     public function testFromWhomEmailAddressIsExist(){
 
+        $this->seed();
+
         $mailInformation = new MailingInformation();
         $fromWhomEmail = $mailInformation->getFromWhomEmailAddress("REGISTRATION_CONFIRMATION");
 
