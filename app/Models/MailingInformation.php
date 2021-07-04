@@ -11,13 +11,23 @@ class MailingInformation extends Model
 
     /**
      * @param $mailingName
-     *
-     * @return \App\Models\MailingInformation
+     * @return string
      */
     public function getFromWhomEmailAddress($mailingName){
-        return $this->select('*')->where([
-                                           ['name', '=', $mailingName]
-                                         ])->first();
+        $mailingInformation = $this->select('*')->where([['name', '=', $mailingName]])->first();
+        return $mailingInformation->from;
     }
+
+
+    /**
+     * @param $mailingName
+     * @return string
+     */
+    public function getSubject($mailingName){
+        $mailingInformation = $this->select('*')->where([['name', '=', $mailingName]])->first();
+        return $mailingInformation->subject;
+
+    }
+
 
 }

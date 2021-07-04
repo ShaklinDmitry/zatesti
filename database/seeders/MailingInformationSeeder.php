@@ -18,6 +18,7 @@ class MailingInformationSeeder extends Seeder
         DB::table('mailing_information')->insert([
                                                    'name' => "REGISTRATION_CONFIRMATION",
                                                    'from' => 'zatesti@gmail.com',
+                                                    'subject' => 'Registration confirmation in zatesti'
                                                  ]);
     }
 }

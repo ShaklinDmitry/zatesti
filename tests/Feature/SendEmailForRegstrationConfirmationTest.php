@@ -94,14 +94,17 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
         $this->assertEquals($email, $user->email);
     }
 
-    public function testFromWhomEmailAddressIsExist(){
+    public function testFromWhomEmailAddressIsCorrect(){
+
+        $testFromWhomEmailAddress = "zatesti@gmail.com";
 
         $this->seed();
 
         $mailInformation = new MailingInformation();
         $fromWhomEmail = $mailInformation->getFromWhomEmailAddress("REGISTRATION_CONFIRMATION");
 
-        $this->assertNotNull($fromWhomEmail);
+
+        $this->assertEquals($fromWhomEmail, $testFromWhomEmailAddress);
     }
 
     public function testIsThereAPlaceForMailingInformation(){
@@ -111,6 +114,17 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
             $this->assertTrue(false);
         }
 
+    }
+
+    public function testIsThereSubjectForMailing(){
+        $testSubjectForMailing = "Registration confirmation in zatesti";
+
+        $this->seed();
+
+        $mailInformation = new MailingInformation();
+        $subjectForMailing = $mailInformation->getSubject("REGISTRATION_CONFIRMATION");
+
+        $this->assertEquals($testSubjectForMailing, $subjectForMailing);
     }
 
 

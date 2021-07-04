@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsConfirmationEmailSendedColumnToUsersTable extends Migration
+class AddSubjectFieldToMailingInformationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsConfirmationEmailSendedColumnToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_confirmation_email_sended')->default(false);
+        Schema::table('mailing_information', function (Blueprint $table) {
+            $table->string('subject', 255)->default('');
         });
     }
 
@@ -25,8 +25,9 @@ class AddIsConfirmationEmailSendedColumnToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_confirmation_email_sended');
+        Schema::table('mailing_information', function (Blueprint $table) {
+            $table->dropColumn('subject');
         });
+
     }
 }
