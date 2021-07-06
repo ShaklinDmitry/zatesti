@@ -127,7 +127,26 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
         $this->assertEquals($testSubjectForMailing, $subjectForMailing);
     }
 
+    public function testIsTextForMailingExists(){
 
+        if (file_exists( resource_path().'/views/mails/emailConfirmation.blade.php')) {
+            $this->assertTrue(true);
+        } else {
+            $this->assertTrue(false);
+        }
+
+    }
+
+    public function testProveRegistartion(){
+        $response = $this->post('/api/register/proofViaMail', array(
+            
+        ));
+    }
+
+    public function testIsLinkForConfirmationGenerated(){
+
+
+    }
 
 
 }
