@@ -25,7 +25,7 @@ class RegisterUserTest extends TestCase
         $email = 'test_email';
         $password = 'test_password';
 
-        $response = $this->post('/api/register', array(
+        $response = $this->post('/api/user', array(
             'login' => $login,
             'email' => $email,
             'password' => $password
@@ -53,7 +53,7 @@ class RegisterUserTest extends TestCase
         $email1 = 'test_email_1';
         $password1 = 'test_password_1';
 
-        $response1 = $this->post('/api/register', array(
+        $response1 = $this->post('/api/user', array(
             'login' => $login1,
             'email' => $email1,
             'password' => $password1
@@ -63,7 +63,7 @@ class RegisterUserTest extends TestCase
         $email2 = 'test_email_2';
         $password2 = 'test_password_2';
 
-        $response2 = $this->post('/api/register', array(
+        $response2 = $this->post('/api/user', array(
             'login' => $login2,
             'email' => $email2,
             'password' => $password2
@@ -88,7 +88,7 @@ class RegisterUserTest extends TestCase
         $email1 = 'test_email_1';
         $password1 = 'test_password_1';
 
-        $response1 = $this->post('/api/register', array(
+        $response1 = $this->post('/api/user', array(
             'login' => $login1,
             'email' => $email1,
             'password' => $password1
@@ -98,7 +98,7 @@ class RegisterUserTest extends TestCase
         $email2 = 'test_email_1';
         $password2 = 'test_password_2';
 
-        $response2 = $this->post('/api/register', array(
+        $response2 = $this->post('/api/user', array(
             'login' => $login2,
             'email' => $email2,
             'password' => $password2
@@ -124,7 +124,7 @@ class RegisterUserTest extends TestCase
         $email1 = 'test_email_1';
         $password1 = 'test_password_1';
 
-        $response1 = $this->post('/api/register', array(
+        $response1 = $this->post('/api/user', array(
             'login' => $login1,
             'email' => $email1,
             'password' => $password1
@@ -134,7 +134,7 @@ class RegisterUserTest extends TestCase
         $email2 = 'test_email_1';
         $password2 = 'test_password_2';
 
-        $response2 = $this->post('/api/register', array(
+        $response2 = $this->post('/api/user', array(
             'login' => $login2,
             'email' => $email2,
             'password' => $password2

@@ -14,6 +14,7 @@ use App\Models\User;
 use function PHPUnit\Framework\assertFalse;
 use Illuminate\Support\Facades\Artisan;
 use App\Models\MailingInformation;
+use Illuminate\Support\Facades\Hash;
 
 class SendEmailForRegstrationConfirmationTest extends TestCase
 {
@@ -41,7 +42,7 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
         $email = 'test_email';
         $password = 'test_password';
 
-        $response = $this->post('/api/register', array(
+        $response = $this->post('/api/user', array(
             'login' => $login,
             'email' => $email,
             'password' => $password
@@ -82,7 +83,7 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
         $email = 'test_email@mail.ru';
         $password = 'test_password';
 
-        $response = $this->post('/api/register', array(
+        $response = $this->post('/api/user', array(
           'login' => $login,
           'email' => $email,
           'password' => $password
@@ -137,16 +138,14 @@ class SendEmailForRegstrationConfirmationTest extends TestCase
 
     }
 
-    public function testProveRegistartion(){
-        $response = $this->post('/api/register/proofViaMail', array(
-            
-        ));
-    }
 
-    public function testIsLinkForConfirmationGenerated(){
+    public function test
 
 
-    }
+
+
+
+
 
 
 }

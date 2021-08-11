@@ -51,10 +51,9 @@ class RegisterUserController extends Controller
                 ]
             ];
 
-            SendRegistrationConfrimationEmailToUser::dispatch($request->email);
-
             return response() -> json($responseData, 201);
         }
     }
+
 
 }

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
  * Class LoginController
  * @package App\Http\Controllers
  */
-class LoginController extends Controller
+class LoginUserController extends Controller
 {
     /**
      * @param Login $request
@@ -24,5 +24,6 @@ class LoginController extends Controller
 
         return $isLoginSuccess;
     }
+
 
 }

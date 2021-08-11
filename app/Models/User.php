@@ -37,6 +37,6 @@ class User extends Model
             ['email', '=', $email]
         ])->first();
     }
-
+    
 
 }

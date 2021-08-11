@@ -18,16 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/register', [\App\Http\Controllers\RegisterUserController::class, 'register']);
+Route::post('/user', [\App\Http\Controllers\RegisterUserController::class, 'register']);
 
-Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
-
-Route::get('/view', function () {
-    return view('exmpl');
-});
-
-Route::post('/createTest', [\App\Http\Controllers\CreateTestController::class, 'createTest']);
-
-Route::post('/email', function (){
-    \Illuminate\Support\Facades\Mail::to('b1a98f7538-7dc730@inbox.mailtrap.io')->send(new \App\Mail\RegistartionConfirmationEmail());
-});
+//Route::patch('/user/login',)
