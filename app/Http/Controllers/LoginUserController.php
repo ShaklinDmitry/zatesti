@@ -20,9 +20,18 @@ class LoginUserController extends Controller
      */
     public function login(Login $request){
         $login = new \App\Layers\Login\Login();
-        $isLoginSuccess = $login->login($request);
+        $result = $login->login($request);
 
-        return $isLoginSuccess;
+        if($result['token']){
+            $responseData = [
+                "data" => [
+                    "message" => "login was successfull.",
+                    "token" => $result['token']
+                ]
+            ];
+
+            return response() -> json($responseData, 201);
+        }
     }
 
 

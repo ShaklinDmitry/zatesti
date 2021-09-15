@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+  //  'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +35,11 @@ return [
     */
 
     'connections' => [
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'dsn' => 'mongodb+srv://shaklin:34522345@cluster0.lgoai.mongodb.net/zatesti?retryWrites=true&w=majority',
+            'database' => 'zatesti',
+        ],
 
         'sqlite' => [
             'driver' => 'sqlite',

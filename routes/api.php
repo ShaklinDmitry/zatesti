@@ -20,4 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/user', [\App\Http\Controllers\RegisterUserController::class, 'register']);
 
-//Route::patch('/user/login',)
+Route::patch('/user/loggedStatus', [\App\Http\Controllers\LoginUserController::class, 'login']);
+
+Route::post('/test', [\App\Http\Controllers\CreateTestController::class, 'createTest']);

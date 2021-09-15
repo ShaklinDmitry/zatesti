@@ -47,7 +47,8 @@ class RegisterUserController extends Controller
 
             $responseData = [
                 "data" => [
-                    "message" => "Registration was successfull."
+                    "message" => "Registration was successfull.",
+                    "token" => $result['token']
                 ]
             ];
 

@@ -11,7 +11,7 @@ class CreateTestController extends Controller
     public function createTest(Request $request){
 
         $test = new Test();
-        $result = $test->create($request->name);
+        $result = $test->create($request);
 
         return $result;
 

@@ -59,7 +59,10 @@ class Registration
 //        }
 
 
-        return $result;
+        return [
+            'registrationResult' => $result,
+            'token' => $user->token
+        ];
     }
 
 }
