@@ -19,4 +19,13 @@ class Question extends Model
 
         $this->save();
     }
+
+    /**
+     * Get all questions
+     * @return Question[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getAll(){
+        return $this->all();
+    }
+
 }

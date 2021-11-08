@@ -27,3 +27,5 @@ Route::post('/test', [\App\Http\Controllers\CreateTestController::class, 'create
 Route::get('/test/questions', [\App\Http\Controllers\GetTestsController::class, 'getTestQuestions']);
 
 Route::post('/question', [\App\Http\Controllers\QuestionController::class, 'create']);
+
+Route::get('/question', [\App\Http\Controllers\QuestionController::class, 'getAll']);
