@@ -26,12 +26,19 @@ class QuestionController extends Controller
         return $question->getAll();
     }
 
+    /**
+     * edit question-answer
+     *
+     * @param Request $request
+     * @return bool
+     */
+    public function edit(Request $request){
 
-    public function edit(string $id, ){
-        $question = new Question($id);
+        $question = new Question($request->id, $request->question, $request->answer);
 
-        $question->edit();
+        $result = $question->edit();
 
+        return $result;
     }
 
 }
