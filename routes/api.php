@@ -28,4 +28,4 @@ Route::get('/test/questions', [\App\Http\Controllers\GetTestsController::class, 
 
 Route::post('/question', [\App\Http\Controllers\QuestionController::class, 'create']);
 
-Route::put('/question', [\App\Http\Controllers\QuestionController::class, 'edit']);
+Route::patch('/question', [\App\Http\Controllers\QuestionController::class, 'edit']);

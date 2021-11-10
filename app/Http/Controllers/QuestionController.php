@@ -34,9 +34,9 @@ class QuestionController extends Controller
      */
     public function edit(Request $request){
 
-        $question = new Question($request->id, $request->question, $request->answer);
+        $question = new Question();
 
-        $result = $question->edit();
+        $result = $question->edit($request->id, $request->question, $request->answer);
 
         return $result;
     }

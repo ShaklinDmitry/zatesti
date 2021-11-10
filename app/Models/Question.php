@@ -45,7 +45,8 @@ class Question extends Model
      * @return bool
      */
     public function edit(string $id, string $question, string $answer){
-        $question = $this->where('id' , '=' , $id )->get();
+        Question::find($id);
+        //   $question = $this;
 
         $question->text = $question;
         $question->answer = $answer;
