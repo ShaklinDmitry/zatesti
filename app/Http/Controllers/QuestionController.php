@@ -34,9 +34,27 @@ class QuestionController extends Controller
      */
     public function edit(Request $request){
 
-        $question = new Question();
+        $question = Question::find($request->id);
 
-        $result = $question->edit($request->id, $request->question, $request->answer);
+        $result = $question->edit($request->question, $request->answer);
+
+        if($result){
+            $responseData = [
+                "data" => [
+                    "message" => "Question was updated."
+                ]
+            ];
+            return response() -> json($responseData, 200);
+        }else{
+            $responseData = [
+                "error" => [
+                    "message" => "Question was not updated"
+                ]
+            ];
+            return response() -> json($responseData,400);
+        }
+
+
 
         return $result;
     }

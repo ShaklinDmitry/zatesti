@@ -44,14 +44,12 @@ class Question extends Model
      *
      * @return bool
      */
-    public function edit(string $id, string $question, string $answer){
-        Question::find($id);
-        //   $question = $this;
+    public function edit(string $question, string $answer){
 
-        $question->text = $question;
-        $question->answer = $answer;
+        $this->text = $question;
+        $this->answer = $answer;
 
-        $result = $question->save();
+        $result = $this->save();
         return $result;
     }
 
