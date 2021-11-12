@@ -24,8 +24,10 @@ Route::patch('/user/loggedStatus', [\App\Http\Controllers\LoginUserController::c
 
 Route::post('/test', [\App\Http\Controllers\CreateTestController::class, 'createTest']);
 
-Route::get('/test/questions', [\App\Http\Controllers\GetTestsController::class, 'getTestQuestions']);
+//Route::get('/test/questions', [\App\Http\Controllers\GetTestsController::class, 'getTestQuestions']);
 
 Route::post('/question', [\App\Http\Controllers\QuestionController::class, 'create']);
 
 Route::patch('/question', [\App\Http\Controllers\QuestionController::class, 'edit']);
+
+Route::get('/question', [\App\Http\Controllers\QuestionController::class, 'getAll']);
