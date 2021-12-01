@@ -22,6 +22,7 @@ class Question extends Model
      */
     public function create(Request $request){
         $this->text = $request->text;
+        $this->answer = '';
 
         $this->save();
     }

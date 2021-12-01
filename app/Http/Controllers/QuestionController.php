@@ -36,6 +36,13 @@ class QuestionController extends Controller
 
         $question = Question::find($request->id);
 
+        if($request->question == null){
+            $request->question = '';
+        }
+        if($request->answer == null){
+            $request->answer = '';
+        }
+
         $result = $question->edit($request->question, $request->answer);
 
         if($result){
