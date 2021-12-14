@@ -20,10 +20,10 @@ class QuestionController extends Controller
      * Get List of questions
      * @return Question[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll(){
+    public function getAll(Request $request){
         $question = new Question();
 
-        return $question->getAll();
+        return $question->getAll($request);
     }
 
     /**

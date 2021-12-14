@@ -20,6 +20,7 @@ class Question extends Model
      * Create new question
      * @param Request $request
      */
+
     public function create(Request $request){
         $this->text = $request->text;
         $this->answer = '';
@@ -31,8 +32,11 @@ class Question extends Model
      * Get all questions
      * @return Question[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll(){
-        return $this->all();
+    public function getAll(Request $request){
+
+        // return $this->all();
+
+        return $this->offset($request->offset)->limit($request->limit)->get();
     }
 
 
