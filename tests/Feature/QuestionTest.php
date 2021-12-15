@@ -24,7 +24,9 @@ class QuestionTest extends TestCase
         $response->assertStatus(200);
     }
 
-
+    /**
+     * test create question
+     */
     public function testCreateQuestion(){
         $question = 'this is test question';
         $answer = '';

@@ -13,7 +13,17 @@ class QuestionController extends Controller
      */
     public function create(Request $request){
         $question = new Question();
-        $question->create($request);
+        $result = $question->create($request);
+
+        if($result){
+            $response = [
+                "data" => [
+                    "code" => 422,
+                    "message" => $errors -> all()
+                ]
+            ];
+            return response() -> json($responseData,422);
+        }
     }
 
     /**
