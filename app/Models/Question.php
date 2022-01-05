@@ -19,13 +19,15 @@ class Question extends Model
     /**
      * Create new question
      * @param Request $request
+     * @return bool
      */
 
     public function create(Request $request){
         $this->text = $request->text;
         $this->answer = '';
 
-        $this->save();
+        $result = $this->save();
+        return $result;
     }
 
     /**

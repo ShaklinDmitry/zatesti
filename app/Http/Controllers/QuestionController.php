@@ -18,11 +18,17 @@ class QuestionController extends Controller
         if($result){
             $response = [
                 "data" => [
-                    "code" => 422,
-                    "message" => $errors -> all()
+                    "message" => "Question was created"
                 ]
             ];
-            return response() -> json($responseData,422);
+            return response() -> json($response,201);
+        }else{
+            $response = [
+                "error" => [
+                    "message" => "Question not created"
+                ]
+            ];
+            return response() -> json($response,200);
         }
     }
 
@@ -70,8 +76,6 @@ class QuestionController extends Controller
             ];
             return response() -> json($responseData,400);
         }
-
-
 
         return $result;
     }
