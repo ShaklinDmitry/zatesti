@@ -34,7 +34,7 @@ class Question extends Model
      * Get all questions
      * @return Question[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll(Request $request){
+    public function get(Request $request){
 
         // return $this->all();
 

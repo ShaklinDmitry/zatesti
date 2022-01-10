@@ -30,4 +30,4 @@ Route::post('/question', [\App\Http\Controllers\QuestionController::class, 'crea
 
 Route::patch('/question', [\App\Http\Controllers\QuestionController::class, 'edit']);
 
-Route::get('/question', [\App\Http\Controllers\QuestionController::class, 'getAll']);
+Route::get('/question', [\App\Http\Controllers\QuestionController::class, 'get']);

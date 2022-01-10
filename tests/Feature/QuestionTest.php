@@ -32,5 +32,10 @@ class QuestionTest extends TestCase
         );
     }
 
+    /**
+     * testing getting a list of all questions
+     */
+    public function testGetAllQuestions(){
 
+    }
 }
