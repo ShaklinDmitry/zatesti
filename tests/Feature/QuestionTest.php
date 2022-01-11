@@ -33,9 +33,10 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * testing getting a list of all questions
+     * testing getting a list of questions
      */
-    public function testGetAllQuestions(){
-
+    public function testGetQuestions(){
+        $response = $this->get('/api/question?offset=0&limit=1');
+        
     }
 }

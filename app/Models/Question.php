@@ -31,12 +31,10 @@ class Question extends Model
     }
 
     /**
-     * Get all questions
+     * Get questions
      * @return Question[]|\Illuminate\Database\Eloquent\Collection
      */
     public function get(Request $request){
-
-        // return $this->all();
 
         return $this->offset($request->offset)->limit($request->limit)->get();
     }
