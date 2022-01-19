@@ -39,7 +39,15 @@ class QuestionController extends Controller
     public function get(Request $request){
         $question = new Question();
 
-        return $question->get($request);
+        $questions = $question->get($request);
+
+        $response = [
+            "data" => [
+                "questions" => $questions
+            ]
+        ];
+
+        return $response;
     }
 
     /**
