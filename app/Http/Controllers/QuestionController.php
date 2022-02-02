@@ -58,8 +58,11 @@ class QuestionController extends Controller
      */
     public function edit(Request $request){
 
+
+        //заменить id на questionid
         $question = Question::find($request->id);
 
+        //это если не найдено
         if($request->question == null){
             $request->question = '';
         }
@@ -72,7 +75,7 @@ class QuestionController extends Controller
         if($result){
             $responseData = [
                 "data" => [
-                    "message" => "Question was updated."
+                    "message" => "Question was updated"
                 ]
             ];
             return response() -> json($responseData, 200);
