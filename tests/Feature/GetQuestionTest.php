@@ -8,17 +8,12 @@ use Tests\TestCase;
 
 class GetQuestionTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function setUp(): void{
-        parent::setUp();
-        $this->refreshDatabase();
-    }
-
     /**
      * testing getting a list of questions
      */
     public function testGetQuestionsWithEmptyBase(){
+        $this->artisan('migrate:fresh');
+
         $response = $this->get('/api/question?offset=0&limit=1');
 
         $response->assertJson(
@@ -31,6 +26,8 @@ class GetQuestionTest extends TestCase
     }
 
     public function testGetQuestions(){
+        $this->artisan('migrate:fresh');
+
         $question = 'this is test question';
 
         $response = $this->post('/api/question', array(

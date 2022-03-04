@@ -31,3 +31,5 @@ Route::post('/question', [\App\Http\Controllers\QuestionController::class, 'crea
 Route::patch('/question', [\App\Http\Controllers\QuestionController::class, 'edit']);
 
 Route::get('/question', [\App\Http\Controllers\QuestionController::class, 'get']);
+
+Route::post('/setInfo', [\App\Http\Controllers\TelegramBotController::class, 'setInfo']);

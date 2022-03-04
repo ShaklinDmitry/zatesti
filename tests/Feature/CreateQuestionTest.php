@@ -8,17 +8,12 @@ use Tests\TestCase;
 
 class CreateQuestionTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function setUp(): void{
-        parent::setUp();
-        $this->refreshDatabase();
-    }
-
     /**
      * test create question
      */
     public function testCreateQuestion(){
+        $this->artisan('migrate:fresh');
+
         $question = 'this is test question';
         $answer = '';
 
